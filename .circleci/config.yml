@@ -1,0 +1,22 @@
+---
+version: 2.1
+jobs:
+  eclint:
+    working_directory: ~/docker-eclint/
+    docker:
+      - image: qima/eclint:circleci-2.8.1-440a5cb
+    steps:
+      - checkout
+      - run:
+          name: Validate Editor Config rules
+          command: |
+            set -x
+            ls -l
+            git ls-files
+            eclint check $(git ls-files)
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - eclint
