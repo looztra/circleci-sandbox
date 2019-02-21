@@ -14,9 +14,24 @@ jobs:
             ls -l
             git ls-files
             eclint check $(git ls-files)
+  detect_tag:
+    docker:
+      - image: qima/eclint:circleci-2.8.1-440a5cb
+    steps:
+      - checkout
+      - run:
+          name: Where are my tags
+          command: |
+            set -x
+            git tag -l
 
 workflows:
   version: 2
-  workflow:
+  houba:
     jobs:
       - eclint
+      - detect_tag:
+          filters:
+            branches:
+              only:
+                - master
