@@ -46,3 +46,6 @@ max_line_length = none
 [{package.json,.travis.yml}]
 indent_style = space
 indent_size = 2
+
+[LICENSE]
+indent_size = none
